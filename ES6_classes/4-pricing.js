@@ -1,43 +1,30 @@
-export default class HolbertonCourse {
-  constructor(name, length, students) {
-    if (typeof name !== 'string') throw TypeError('name must be a String');
-    if (typeof length !== 'number') throw TypeError('length must be a Number');
-    if (!Array.isArray(students)) throw TypeError('students must be an Array');
-    for (const el of students) {
-      if (typeof el !== 'string') { throw TypeError('students must contain strings'); }
-    }
-    this._name = name;
-    this._length = length;
-    this._students = students;
+export default class Pricing {
+  constructor(amount, currency) {
+    this._amount = amount;
+    this._currency = currency;
   }
 
-  set name(name) {
-    if (typeof name !== 'string') throw TypeError('name must be a String');
-    this._name = name;
+  set amount(amount) {
+    this._amount = amount;
   }
 
-  get name() {
-    return this._name;
+  get amount() {
+    return this._amount;
   }
 
-  set length(length) {
-    if (typeof length !== 'number') throw TypeError('length must be a Number');
-    this._length = length;
+  set currency(currency) {
+    this._currency = currency;
   }
 
-  get length() {
-    return this._length;
+  get currency() {
+    return this._currency;
   }
 
-  set students(students) {
-    if (!Array.isArray(students)) throw TypeError('students must be an Array');
-    for (const el of students) {
-      if (typeof el !== 'string') { throw TypeError('students must contain strings'); }
-    }
-    this._students = students;
+  displayFullPrice() {
+    return `${this.amount} ${this.currency.displayFullCurrency()}`;
   }
 
-  get students() {
-    return this._students;
+  static convertPrice(amount, conversionRate) {
+    return amount * conversionRate;
   }
 }
