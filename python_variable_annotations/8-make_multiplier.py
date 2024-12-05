@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-from typing import Callable
-
 """
 This module provides a function to create a multiplier function.
 
 The `make_multiplier` function is useful when you need a function
 that applies a consistent multiplication factor to any given float input.
 """
+from typing import Callable
 
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:

@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-from typing import List, Union
-
 """
 this fuction Calculates the sum of a list containing integers and floats.
 
 fuction:
     sum_mixed_list(mxd_lst)
 """
+from typing import List, Union
 
 
 def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:

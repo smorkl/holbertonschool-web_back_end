@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-from typing import List
 """
 The module sums all the float data in a list.
 
 fuction:
     sum_list(input_list): This function sums all the data in a list
 """
+from typing import List
 
 
 def sum_list(input_list: List[float]) -> float:
