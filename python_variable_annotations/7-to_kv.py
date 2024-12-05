@@ -8,7 +8,7 @@ The key must be a string, and the value can be either an integer or a float.
 """
 
 
-def to_kv(k: str, v: Union[int, float]) -> tuple:
+def to_kv(k: str, v: Union[int, float]) -> tuple[str, float]:
     """
     Creates a tuple from a key-value pair.
 
