@@ -21,4 +21,4 @@ def sum_list(input_list: list[float]) -> float:
     total = 0.0
     for n in input_list:
         total += n
-    return n
+    return total
