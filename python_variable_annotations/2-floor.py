@@ -5,7 +5,6 @@ the module return n floor
 fuction:
     floor(n) Returns the floor of a number.
 """
-from math import floor
 
 
 def floor(n: float) -> int:
@@ -18,4 +17,4 @@ def floor(n: float) -> int:
     Return:
         The floor of the number.
     """
-    return int(floor(n))
+    return int(n)
