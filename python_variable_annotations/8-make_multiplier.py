@@ -9,26 +9,7 @@ The `make_multiplier` function takes a float as input and returns a new function
 
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
-    """
-    Creates a multiplier function.
-
-    Args:
-        multiplier: The factor to multiply by.
-
-    Returns:
-        A function that multiplies its input by the given multiplier.
-    """
-
-    def multiply(x: float) -> float:
-        """
-        Multiplies the input by the multiplier.
-
-        Args:
-            x: The number to multiply.
-
-        Returns:
-            The product of x and the multiplier.
-        """
-        return x * multiplier
-
-    return multiply
+    """Returns a function that multiplies a float by the given multiplier."""
+    def multiplier_function(value: float) -> float:
+        return value * multiplier
+    return multiplier_function
