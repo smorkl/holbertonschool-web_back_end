@@ -7,7 +7,7 @@ This module provides a function to calculate the length of each element in a lis
 The `element_length` function takes a list as input and returns a new list of tuples. Each tuple contains an element from the input list and its corresponding length.
 """
 
-def element_length(lst: Iterable[Sequence]) -> List[Tuple[str, int]]:
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
     """
     Calculates the length of each element in a list of strings.
 
