@@ -8,6 +8,7 @@ The `make_multiplier` function is useful when you need a function
 that applies a consistent multiplication factor to any given float input.
 """
 
+
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
     Create a multiplier function.
@@ -24,6 +25,7 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
         6.0
 
     """
+
     def multiplier_function(value: float) -> float:
         """
         Multiply the given value by the multiplier.
