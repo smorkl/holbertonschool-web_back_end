@@ -8,7 +8,7 @@ fuction:
 """
 
 
-def floor(n):
+def floor(n: float):
     """
     Returns the floor of a number.
 
