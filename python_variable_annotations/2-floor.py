@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+from math import floor
 """
 the module return n floor
 
@@ -8,7 +8,7 @@ fuction:
 """
 
 
-def floor(n: float):
+def floor(n: float) -> int:
     """
     Returns the floor of a number.
 
@@ -18,4 +18,4 @@ def floor(n: float):
     Return:
         The floor of the number.
     """
-    return n
+    return floor(n)
