@@ -5,7 +5,9 @@ from typing import List, Tuple, Sequence, Iterable
 This module provides a function to calculate
  the length of each element in a list.
 
-The `element_length` function takes a list as input and returns a new list of tuples. Each tuple contains an element from the input list and its corresponding length.
+The `element_length` function takes a list as
+input and returns a new list of tuples. Each tuple
+contains an element from the input list and its corresponding length.
 """
 
 
