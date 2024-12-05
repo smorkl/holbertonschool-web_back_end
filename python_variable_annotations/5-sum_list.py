@@ -9,7 +9,7 @@ fuction:
 """
 
 
-def sum_list(input_list: list[float]) -> float:
+def sum_list(input_list: List[float]) -> float:
     """
     This function sums all the data in a list.
 
