@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-This module provides a function to calculate the length of each element in a list.
+This module provides a function to calculate
+ the length of each element in a list.
 
-The `element_length` function accepts an iterable of sequences and returns a list
-of tuples. Each tuple contains an element from the input iterable and its corresponding length.
+The `element_length` function accepts an iterable
+of sequences and returns a list of tuples. Each tuple
+contains an element from the input iterable and its corresponding length.
 """
 from typing import List, Tuple, Sequence, Iterable
 
