@@ -14,10 +14,12 @@ def make_multiplier(multiplier: float) -> Callable[[float], float]:
     Create a multiplier function.
 
     Args:
-        multiplier (float): The value by which inputs to the returned function will be multiplied.
+        multiplier (float): The value by which inputs
+          to the returned function will be multiplied.
 
     Returns:
-        Callable[[float], float]: A function that takes a float as input and returns the product of the input and the multiplier.
+        Callable[[float], float]: A function that takes a 
+        float as input and returns the product of the input and the multiplier.
 
     Example:
         >>> multiplier_function = make_multiplier(3.0)
