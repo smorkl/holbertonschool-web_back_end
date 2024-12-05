@@ -20,5 +20,8 @@ def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
         A tuple containing the key and value.
     """
 
-    tuple = (k, v)
+    tuple = (k, v**2)
     return tuple
+
+tupla = to_kv("egg", 3)
+print(tupla)
