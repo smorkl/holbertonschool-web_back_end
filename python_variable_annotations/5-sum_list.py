@@ -18,6 +18,7 @@ def sum_list(input_list: list[float]) -> float:
     Return:
         result of adding the numbers in the list
     """
+    total = 0.0
     for n in input_list:
-        n += n
+        total += n
     return n
