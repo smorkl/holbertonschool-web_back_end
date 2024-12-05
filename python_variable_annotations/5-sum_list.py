@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from typing import List
 
 """
 The module sums all the float data in a list.
