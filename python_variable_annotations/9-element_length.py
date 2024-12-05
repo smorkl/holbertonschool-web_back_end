@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import List, Tuple
+from typing import List
 
 """
 This module provides a function to calculate the length of each element in a list.
@@ -7,7 +7,7 @@ This module provides a function to calculate the length of each element in a lis
 The `element_length` function takes a list as input and returns a new list of tuples. Each tuple contains an element from the input list and its corresponding length.
 """
 
-def element_length(lst: List) -> List[Tuple[str, int]]:
+def element_length(lst: List) -> List[tuple[str, int]]:
     """
     Calculates the length of each element in a list of strings.
 
