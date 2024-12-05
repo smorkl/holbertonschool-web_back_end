@@ -3,7 +3,7 @@ from typing import List, Union
 """
 this fuction Calculates the sum of a list containing integers and floats.
 """
-def sum_mixed_list (mxd_lst: List[Union[float, int]]) -> float:
+def sum_mixed_list (mxd_lst: List[Union[int, float]]) -> float:
     """Calculates the sum of a list containing integers and floats.
 
     Args:
