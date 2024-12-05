@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from typing import Union
+from typing import Union, Tuple
 
 """
 This module provides a function to create a tuple from a key-value pair.
@@ -8,7 +8,7 @@ The key must be a string, and the value can be either an integer or a float.
 """
 
 
-def to_kv(k: str, v: Union[int, float]) -> tuple[str, Union[int, float]]:
+def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     """
     Creates a tuple from a key-value pair.
 
