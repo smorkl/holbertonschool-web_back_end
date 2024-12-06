@@ -7,7 +7,7 @@ from typing import List
 
 async def wait_n (n: int, max_delay: int) -> List[float]:
     i = 0
-    list = ()
+    list = []
     while i <= n:
         list.append(wait_random(max_delay))
         i += 1
