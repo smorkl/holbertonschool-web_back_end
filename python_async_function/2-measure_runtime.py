@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhon3
+#!/usr/bin/env python3
 """
 """
 
@@ -7,6 +7,8 @@ import time
 
 
 async def measure_time(n: int, max_delay: int) -> float:
+    """
+    """
     start = time.time()
     await wait_n(n, max_delay)
     end = time.time()
