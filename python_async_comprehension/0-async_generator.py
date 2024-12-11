@@ -5,9 +5,10 @@ times and randomly gives a number from 1 to 10
 """
 import asyncio
 import random
+from typing import Generator
 
 
-async def async_generator():
+async def async_generator() -> Generator[float, NoneType, NoneType]: # type: ignore
     """
     Asynchronously generates 10 random
     numbers between 0 and 10, with a 1-second
