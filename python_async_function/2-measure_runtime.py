@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+wait_n = __import__("1-concurrent_coroutines").wait_n
 """
 This module imports the wait_n function
 and executes it n times, and at the end
 we return the average of the time it took to execute.
 """
-wait_n = __import__("1-concurrent_coroutines").wait_n
 import time
 import asyncio
 
