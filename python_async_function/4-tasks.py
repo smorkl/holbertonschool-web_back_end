@@ -9,7 +9,7 @@ simple asynchronous call
 from typing import List
 import asyncio
 
-task_wait_random = __import__("0-basic_async_syntax").task_wait_random
+task_wait_random = __import__("3-tasks").task_wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
@@ -31,3 +31,6 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     delays = await asyncio.gather(*tasks)
     return sorted(delays)
 
+n = 5
+max_delay = 6
+print(asyncio.run(task_wait_n(n, max_delay)))
