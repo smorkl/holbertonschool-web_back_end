@@ -2,10 +2,7 @@
 """
 simple asynchronous call
 """
-#!/usr/bin/env python3
-"""
-simple asynchronous call
-"""
+
 from typing import List
 import asyncio
 
