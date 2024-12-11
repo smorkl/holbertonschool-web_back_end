@@ -30,5 +30,5 @@ async def async_comprehension() -> List[float]:
         list: A list of 10 random integers.
     """
 
-    num_ten = [i async for i in async_generator()]
+    num_ten = [float[i] async for i in async_generator()]
     return num_ten
