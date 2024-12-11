@@ -2,14 +2,19 @@
 """
 simple asynchronous call
 """
+#!/usr/bin/env python3
+"""
+simple asynchronous call
+"""
 from typing import List
-wait_random = __import__("0-basic_async_syntax").wait_random
-task_wait_random = __import__("1-concurrent_coroutines").task_wait_random
+import asyncio
+
+task_wait_random = __import__("0-basic_async_syntax").task_wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """
-    Asynchronously waits for a specified number of random delays.
+    Asynchronously waits for a specified number of random delays using tasks.
 
     Args:
         n (int): The number of times to wait.
@@ -18,9 +23,11 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     Returns:
         List[float]: A list of the actual delays in seconds.
     """
-    delays_list = []
+    tasks = []
     for _ in range(n):
-        delay = await wait_random(max_delay)
-        delays_list.append(float(delay))
+        task = asyncio.create_task(task_wait_random(max_delay))
+        tasks.append(task)
 
-    return sorted(delays_list)
+    delays = await asyncio.gather(*tasks)
+    return sorted(delays)
+
