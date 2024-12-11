@@ -6,6 +6,7 @@ times and randomly gives a number from 1 to 10
 import asyncio
 import random
 
+
 async def async_generator():
     """
     Asynchronously generates 10 random
