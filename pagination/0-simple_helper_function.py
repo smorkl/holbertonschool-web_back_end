@@ -7,7 +7,6 @@ fuction:
     returns the start and end index based on
     the requested page and the page size
 """
-from typing import Tuple
 
 
 def index_range(page: int, page_size: int) -> tuple:
