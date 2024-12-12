@@ -65,6 +65,24 @@ class Server:
         return dataset[start:end] if start < len(dataset) else []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        """
+        Generates a hypermedia-style pagination dictionary.
+
+        Args:
+            page (int): The current page number (1-indexed). Defaults to 1.
+            page_size (int): The number of items per page. Defaults to 10.
+
+        Returns:
+            dict: A dictionary containing pagination details, including:
+                - page_size (int): The number of items per page.
+                - page (int): The current page number.
+                - data (List): The list of items on the current page.
+                - next_page (int | None): The next page number, or
+                  None if it's the last page.
+                - prev_page (int | None): The previous page number, or
+                  None if it's the first page.
+                - total_pages (int): The total number of pages.
+        """
         total_pages = ceil(len(self.dataset()) / page_size)
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > 1 else None
