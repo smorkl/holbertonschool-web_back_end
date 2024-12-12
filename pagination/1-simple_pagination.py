@@ -34,16 +34,23 @@ class Server:
         end_index = start_index + page_size
         return start_index, end_index
 
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        try:
-            page = int(page)
-            page_size = int(page_size)
-        except ValueError:
-            raise ValueError("Page and page size must be integers")
-        assert page > 0, "Page number must be greater than 0"
-        assert page_size > 0, "Page size must be greater than 0"
+        """
+        Get a page of data.
 
-        indexes = self.index_range(page, page_size)
-        data = self.dataset()
+        Args:
+            page (int): The page number (1-indexed).
+            page_size (int): The number of items per page.
 
-        return data[indexes[0] : indexes[1]]
+        Returns:
+            List[List]: The list of rows for the given page.
+        """
+        # Validate inputs
+        assert isinstance(page, int) and page > 0, "Page must be a positive integer."
+        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer."
+
+        # Get dataset and slice based on index_range
+        dataset = self.dataset()
+        start, end = self.index_range(page, page_size)
+        return dataset[start:end] if start < len(dataset) else []
