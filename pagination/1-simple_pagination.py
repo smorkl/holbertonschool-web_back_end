@@ -45,12 +45,10 @@ class Server:
         Returns:
             List[List]: The list of rows for the given page.
         """
-        # Validate inputs
         assert isinstance(page, int) and page > 0, "Page must be a positive integer."
         assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer."
 
-        # Get dataset and slice based on index_range
         dataset = self.dataset()
-        start, end = index_range(page, page_size)  # Use standalone function index_range
+        start, end = index_range(page, page_size)
         return dataset[start:end] if start < len(dataset) else []
 
