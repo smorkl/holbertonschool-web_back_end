@@ -1,4 +1,4 @@
-#!/usr/bin/evn python3
+#!/usr/bin/env python3
 """
 This module has a function that returns
 the start and end index of a page.
