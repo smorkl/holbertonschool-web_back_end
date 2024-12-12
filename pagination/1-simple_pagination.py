@@ -35,22 +35,23 @@ class Server:
         return start_index, end_index
 
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """
-        Get a page of data.
+def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    """
+    Get a page of data.
 
-        Args:
-            page (int): The page number (1-indexed).
-            page_size (int): The number of items per page.
+    Args:
+        page (int): The page number (1-indexed).
+        page_size (int): The number of items per page.
 
-        Returns:
-            List[List]: The list of rows for the given page.
-        """
-        # Validate inputs
-        assert isinstance(page, int) and page > 0, "Page must be a positive integer."
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer."
+    Returns:
+        List[List]: The list of rows for the given page.
+    """
+    # Validate inputs
+    assert isinstance(page, int) and page > 0, "Page must be a positive integer."
+    assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer."
 
-        # Get dataset and slice based on index_range
-        dataset = self.dataset()
-        start, end = self.index_range(page, page_size)
-        return dataset[start:end] if start < len(dataset) else []
+    # Get dataset and slice based on index_range
+    dataset = self.dataset()
+    start, end = self.index_range(page, page_size)  # Use standalone function index_range
+    return dataset[start:end] if start < len(dataset) else []
+
