@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+Module for paginating a dataset of popular baby names.
+
+This module includes a function for calculating index ranges for pagination
+and a `Server` class that provides methods to load and paginate a dataset
+stored in a CSV file.
+"""
 import csv
 import math
 from typing import List
