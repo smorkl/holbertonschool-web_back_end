@@ -35,6 +35,12 @@ class Server:
         return start_index, end_index
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        try:
+            page = int(page)
+            page_size = int(page_size)
+        except ValueError:
+            # Manejar el caso en que las entradas no son números enteros válidos
+            raise ValueError("Page and page size must be integers")
         assert page > 0, "Page number must be greater than 0"
         assert page_size > 0, "Page size must be greater than 0"
 
