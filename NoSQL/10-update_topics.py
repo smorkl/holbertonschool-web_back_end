@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+the document
+"""
 
 def update_topics(mongo_collection, name, topics):
     """
