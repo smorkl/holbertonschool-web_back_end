@@ -1,0 +1,8 @@
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+
+dbnames = client.list_database_names()
+
+for dbname in dbnames:
+    print(dbname)
