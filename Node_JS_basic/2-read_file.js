@@ -20,7 +20,7 @@ function countStudents(path) {
 
     const fieldCounts = {};
 
-    for (let i = 1; i < students.length; i++) {
+    for (let i = 1; i < students.length; i += 1) { // Changed i++ to i += 1
       const student = students[i];
       const field = student[3]; // Access the 'field' column
       const firstname = student[0]; // Access the 'firstname' column
