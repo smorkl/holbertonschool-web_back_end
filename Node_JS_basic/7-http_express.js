@@ -11,7 +11,7 @@ const app = express();
  */
 async function countStudents(path) {
   try {
-    const data = await fs.promises.readFile(path, "utf-8");
+    const data = await fs.promises.readFile(path, 'utf-8');
     const lines = data.split('\n').filter((line) => line.trim() !== ''); // Remove empty lines
 
     if (lines.length < 2) {
@@ -73,7 +73,7 @@ app.get('/students', async (req, res) => {
     res.send(`This is the list of our students\n${studentInfo}`);
   } catch (error) {
     res.setHeader('Content-Type', 'text/plain');
-    res.send(`This is the list of our students\nCannot load the database`);
+    res.send('This is the list of our students\nCannot load the database');
   }
 });
 
