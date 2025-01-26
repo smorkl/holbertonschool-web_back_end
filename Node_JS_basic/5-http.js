@@ -1,88 +1,88 @@
 const http = require('http');
 const fs = require('fs');
-const { promisify } = require('util');
 
-// Promisify fs.readFile for easier use
-const readFileAsync = promisify(fs.readFile);
-
-/**
- * Counts the number of students in a CSV file asynchronously.
- *
- * @param {string} path - The path to the CSV file.
- * @returns {Promise<string>} - A promise that resolves to a formatted string with student information.
- */
-async function countStudents(path) {
+async function countStudents(filepath) {
   try {
-    const data = await readFileAsync(path, 'utf-8');
-    const lines = data.split('\n').filter(line => line.trim() !== ''); // Remove empty lines
+    const csv = await fs.promises.readFile(filepath, { encoding: 'utf8' });
+    const headerArray = csv.split(/\r?\n|\n/);
+    const headers = headerArray[0].split(',');
 
-    const students = lines.map(line => line.split(','));
-    const fields = students[0]; // Headers: firstname, lastname, age, field
-
-    if (fields.length < 4) {
-      throw new Error('Invalid file format');
-    }
-
-    const fieldCounts = {};
-    for (let i = 1; i < students.length; i++) {
-      const student = students[i];
-      if (student.length < 4) continue; // Skip invalid rows
-      const field = student[3]; // Access 'field' column
-      const firstname = student[0]; // Access 'firstname' column
-
-      if (!fieldCounts[field]) {
-        fieldCounts[field] = [];
+    // strip headers and convert to list of dicts
+    const dictList = [];
+    const noHeaderArray = headerArray.slice(1);
+    for (let i = 0; i < noHeaderArray.length; i += 1) {
+      const data = noHeaderArray[i].split(',');
+      if (data.length === headers.length) {
+        const row = {};
+        for (let j = 0; j < headers.length; j += 1) {
+          row[headers[j].trim()] = data[j].trim();
+        }
+        dictList.push(row);
       }
-
-      fieldCounts[field].push(firstname);
     }
 
-    let output = `Number of students: ${students.length - 1}`;
-    for (const field in fieldCounts) {
-      output += `\nNumber of students in ${field}: ${fieldCounts[field].length}. List: ${fieldCounts[field].join(', ')}`;
-    }
-    return output;
-  } catch (error) {
+    // count and collect first names of students per field
+    let countCS = 0;
+    let countSWE = 0;
+    const studentsCS = [];
+    const studentsSWE = [];
+
+    dictList.forEach((element) => {
+      if (element.field === 'CS') {
+        countCS += 1;
+        studentsCS.push(element.firstname);
+      } else if (element.field === 'SWE') {
+        countSWE += 1;
+        studentsSWE.push(element.firstname);
+      }
+    });
+
+    const countStudents = countCS + countSWE;
+
+    return ({
+      countStudents,
+      countCS,
+      countSWE,
+      studentsCS,
+      studentsSWE,
+    });
+  } catch (err) {
     throw new Error('Cannot load the database');
   }
 }
 
-// Create the HTTP server
-const app = http.createServer(async (req, res) => {
+const pathToDB = process.argv[2];
+const hostname = '127.0.0.1';
+const port = 1245;
+
+const app = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    const databasePath = process.argv[2];
-    if (!databasePath) {
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('Database path not provided');
-      return;
-    }
-
-    try {
-      const studentsInfo = await countStudents(databasePath);
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end(`This is the list of our students\n${studentsInfo}`);
-    } catch (error) {
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end(error.message);
-    }
-  } else {
-    res.statusCode = 404;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Not Found');
+    // call async function and collect needed variables
+    countStudents(pathToDB)
+      .then(({
+        countStudents,
+        countCS,
+        countSWE,
+        studentsCS,
+        studentsSWE,
+      }) => {
+        res.write('This is the list of our students\n');
+        res.write(`Number of students: ${countStudents}\n`);
+        res.write(`Number of students in CS: ${countCS}. List: ${studentsCS.toString().split(',').join(', ')}\n`);
+        res.write(`Number of students in SWE: ${countSWE}. List: ${studentsSWE.toString().split(',').join(', ')}`);
+        res.end();
+      })
+      .catch(() => {
+        res.end('Error: Cannot load the database');
+        throw new Error('Cannot load the database');
+      });
   }
 });
 
-// Set the server to listen on port 1245
-app.listen(1245, () => {
-  console.log('Server is running on port 1245');
-});
+app.listen(port, hostname);
 
-// Export the app
 module.exports = app;
