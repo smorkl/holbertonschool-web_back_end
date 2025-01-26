@@ -11,7 +11,7 @@ const app = express();
  */
 async function countStudents(path) {
   try {
-    const data = await fs.promises.readFile(path, 'utf-8');
+    const data = await fs.promises.readFile(path, "utf-8");
     const lines = data.split('\n').filter((line) => line.trim() !== ''); // Remove empty lines
 
     if (lines.length < 2) {
