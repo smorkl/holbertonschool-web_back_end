@@ -1,15 +1,12 @@
 console.log('Welcome to Holberton School, what is your name?');
-// await input
+
+// Leer entrada estándar
 process.stdin.resume();
-// once input is entered
-process.stdin.on('readable', () => {
-  const name = process.stdin.read();
-  process.stdout.write(`Your name is: ${name}`);
-  // check if input is coming from the terminal
-  if (process.stdin.isTTY) {
-    process.exit();
-  } else {
-    process.stdout.write('This important software is now closing\n');
-    process.exit();
-  }
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('data', (chunk) => {
+  const name = chunk.trim(); // Remover saltos de línea y espacios adicionales
+  console.log(`Your name is: ${name}`);
+  console.log('This important software is now closing');
+  process.exit(0); // Salida exitosa
 });
