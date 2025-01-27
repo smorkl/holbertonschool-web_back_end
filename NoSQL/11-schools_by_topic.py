@@ -22,4 +22,4 @@ def schools_by_topic(mongo_collection, topic):
     query = {"topic": topic}
     result = mongo_collection.find(query)
 
-    return list(result)
+    return result
