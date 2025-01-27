@@ -1,28 +1,39 @@
 // full_server/utils.js
 import fs from 'fs';
-import path from 'path';
-import csv from 'csv-parser';
+
 
 export function readDatabase(filePath) {
   return new Promise((resolve, reject) => {
-    const result = {};
+    fs.readFile(filePath, 'utf-8', (err, data) => {
+      if (err) {
+        reject('Cannot read the file');
+        return;
+      }
 
-    fs.createReadStream(filePath) // Crear un flujo de lectura del archivo CSV
-      .pipe(csv()) // Usar csv-parser para procesar el CSV
-      .on('data', (row) => {
-        const { field, firstname } = row; // Extraer 'field' y 'firstname' de cada fila
+      try {
+        const lines = data.trim().split('\n'); // Dividir por líneas
+        const headers = lines[0].split(','); // Encabezados (primera línea)
+        const result = {};
 
-        // Organizar los datos por 'field'
-        if (!result[field]) {
-          result[field] = [];
-        }
-        result[field].push(firstname); // Agregar el 'firstname' al campo correspondiente
-      })
-      .on('end', () => {
-        resolve(result); // Resolver la promesa con el objeto resultante
-      })
-      .on('error', (err) => {
-        reject('Cannot read the file'); // Rechazar en caso de error
-      });
+        lines.slice(1).forEach(line => {
+          const values = line.split(','); // Dividir cada línea en columnas
+          const row = headers.reduce((acc, header, index) => {
+            acc[header] = values[index];
+            return acc;
+          }, {});
+
+          // Agrupar por 'field'
+          const { field, firstname } = row;
+          if (!result[field]) {
+            result[field] = [];
+          }
+          result[field].push(firstname);
+        });
+
+        resolve(result); // Resolver la promesa con los datos procesados
+      } catch (error) {
+        reject('Error processing the file');
+      }
+    });
   });
 }
