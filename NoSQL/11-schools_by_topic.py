@@ -19,4 +19,8 @@ def schools_by_topic(mongo_collection, topic):
         list: A list of documents where the 'topic'
         field matches the provided topic.
     """
-    return [item for item in mongo_collection.find({"topics": topic})]
+    result = []
+    for item in mongo_collection.find({"topics": topic}):
+        result.append(item)
+
+    return result
