@@ -3,20 +3,26 @@
 
 from pymongo import MongoClient
 
-
-# default host:port is localhost:27017
+# Establish connection to the MongoDB server
 client = MongoClient()
+
+# Access the 'logs' database and 'nginx' collection
 col = client.logs.nginx
 
-# have to use empty {} to get count of all docs!
+# Count the total number of documents in the 'nginx' collection
 count = col.count_documents({})
+
+# Count the number of documents for each HTTP method (GET, POST, PUT, PATCH, DELETE)
 get = col.count_documents({"method": "GET"})
 post = col.count_documents({"method": "POST"})
 put = col.count_documents({"method": "PUT"})
 patch = col.count_documents({"method": "PATCH"})
 delete = col.count_documents({"method": "DELETE"})
+
+# Count the number of GET requests where the path is "/status"
 status = col.count_documents({"method": "GET", "path": "/status"})
 
+# Print the stats in the required format
 if __name__ == "__main__":
     print(f"{count} logs")
     print("Methods:")
