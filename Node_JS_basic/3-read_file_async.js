@@ -4,7 +4,7 @@ const fs = require('fs');
  * Counts the number of students in a CSV file asynchronously.
  *
  * @param {string} path - The path to the CSV file.
- * @returns {Promise<void>} 
+ * @returns {Promise<void>}
  */
 function countStudents(path) {
   return new Promise((resolve, reject) => {
@@ -30,11 +30,11 @@ function countStudents(path) {
         if (student.length >= 4) { // Only process valid rows
           const field = student[3]; // Access 'field' column
           const firstname = student[0]; // Access 'firstname' column
-      
+
           if (!fieldCounts[field]) {
             fieldCounts[field] = [];
           }
-      
+
           fieldCounts[field].push(firstname);
         }
       }
